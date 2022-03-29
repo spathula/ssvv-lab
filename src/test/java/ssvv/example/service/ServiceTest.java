@@ -1,5 +1,6 @@
 package ssvv.example.service;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ssvv.example.domain.Nota;
@@ -31,17 +32,44 @@ public class ServiceTest {
         this.service = new Service(fileRepository1, fileRepository2, fileRepository3);
     }
 
-    @Test
-    public void testAddStudentSuccess() {
+    @After
+    public void teardown() {
         service.deleteStudent("1");
+    }
+
+    @Test
+    public void test_addStudent_success() {
         int result = service.saveStudent("1", "student1", 123);
         assertEquals(1, result);
     }
 
     @Test
-    public void testAddStudentFail() {
-        service.deleteStudent("2");
-        int result = service.saveStudent("2", "student2", 1);
+    public void test_addStudent_fail_invalidGroup() {
+        int result = service.saveStudent("1", "student1", 1);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void test_addStudent_fail_emptyId() {
+        int result = service.saveStudent("", "student2", 123);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void test_addStudent_fail_emptyName() {
+        int result = service.saveStudent("1", "", 123);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void test_addStudent_fail_nullId() {
+        int result = service.saveStudent(null, "student2", 123);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void test_addStudent_fail_nullName() {
+        int result = service.saveStudent("1", null, 123);
         assertEquals(0, result);
     }
 
