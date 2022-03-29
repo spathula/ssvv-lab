@@ -32,29 +32,36 @@ public class Service {
 
     public int saveStudent(String id, String nume, int grupa, String mail) {
         Student student = new Student(id, nume, grupa, mail);
-        Student result = null;
+        Student result;
+
         try {
            result = studentXmlRepo.save(student);
         } catch (ValidationException e) {
             return 0;
         }
-        if(result == null) return 1;
-        return 0;
 
+        if (result == null) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public int saveTema(String id, String descriere, int deadline, int startline) {
         Tema tema = new Tema(id, descriere, deadline, startline);
-        Tema result = null;
+        Tema result;
+
         try {
             result = temaXmlRepo.save(tema);
         } catch (ValidationException e) {
             return 0;
         }
+
         if (result == null) {
             return 1;
+        } else {
+            return 0;
         }
-        return 0;
     }
 
     public int saveNota(String idStudent, String idTema, double valNota, int predata, String feedback) {

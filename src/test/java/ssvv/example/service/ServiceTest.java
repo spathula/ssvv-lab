@@ -35,6 +35,7 @@ public class ServiceTest {
     @After
     public void teardown() {
         service.deleteStudent("1");
+        service.deleteTema("1");
     }
 
     @Test
@@ -85,4 +86,16 @@ public class ServiceTest {
         assertEquals(0, result);
     }
 
+    @Test
+    public void test_addAssignment_IfResultNull() {
+        int result = service.saveTema("1", "tema", 3, 2);
+        assertEquals(1, result);
+    }
+
+    @Test
+    public void test_addAssignment_IfResultNotNull() {
+        service.saveTema("1", "tema", 3, 2);
+        int result = service.saveTema("1", "tema", 3, 2);
+        assertEquals(0, result);
+    }
 }
