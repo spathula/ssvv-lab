@@ -35,21 +35,14 @@ public class ServiceTest {
     public void testAddStudentSuccess() {
         service.deleteStudent("1");
         int result = service.saveStudent("1", "student1", 123);
-        assertEquals(0, result);
+        assertEquals(1, result);
     }
 
     @Test
     public void testAddStudentFail() {
         service.deleteStudent("2");
         int result = service.saveStudent("2", "student2", 1);
-        assertEquals(1, result);
-    }
-
-    @Test
-    public void testAddStudentFail_() {
-        service.deleteStudent("2");
-        int result = service.saveStudent("2", "student2", 1);
-        assertEquals(1, result);
+        assertEquals(0, result);
     }
 
 }
