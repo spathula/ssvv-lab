@@ -30,8 +30,8 @@ public class Service {
 
     public Iterable<Nota> findAllNote() { return notaXmlRepo.findAll(); }
 
-    public int saveStudent(String id, String nume, int grupa) {
-        Student student = new Student(id, nume, grupa);
+    public int saveStudent(String id, String nume, int grupa, String mail) {
+        Student student = new Student(id, nume, grupa, mail);
         Student result = null;
         try {
            result = studentXmlRepo.save(student);
@@ -97,8 +97,8 @@ public class Service {
         return 1;
     }
 
-    public int updateStudent(String id, String numeNou, int grupaNoua) {
-        Student studentNou = new Student(id, numeNou, grupaNoua);
+    public int updateStudent(String id, String numeNou, int grupaNoua, String mailNou) {
+        Student studentNou = new Student(id, numeNou, grupaNoua, mailNou);
         Student result = studentXmlRepo.update(studentNou);
 
         if (result == null) {

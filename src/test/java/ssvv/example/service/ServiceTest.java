@@ -39,37 +39,37 @@ public class ServiceTest {
 
     @Test
     public void test_addStudent_success() {
-        int result = service.saveStudent("1", "student1", 123);
+        int result = service.saveStudent("1", "student1", 123, "mail@domain.com");
         assertEquals(1, result);
     }
 
     @Test
     public void test_addStudent_fail_invalidGroup() {
-        int result = service.saveStudent("1", "student1", 1);
+        int result = service.saveStudent("1", "student1", 1, "mail@domain.com");
         assertEquals(0, result);
     }
 
     @Test
     public void test_addStudent_fail_emptyId() {
-        int result = service.saveStudent("", "student2", 123);
+        int result = service.saveStudent("", "student2", 123, "mail@domain.com");
         assertEquals(0, result);
     }
 
     @Test
     public void test_addStudent_fail_emptyName() {
-        int result = service.saveStudent("1", "", 123);
+        int result = service.saveStudent("1", "", 123, "mail@domain.com");
         assertEquals(0, result);
     }
 
     @Test
     public void test_addStudent_fail_nullId() {
-        int result = service.saveStudent(null, "student2", 123);
+        int result = service.saveStudent(null, "student2", 123, "mail@domain.com");
         assertEquals(0, result);
     }
 
     @Test
     public void test_addStudent_fail_nullName() {
-        int result = service.saveStudent("1", null, 123);
+        int result = service.saveStudent("1", null, 123, "mail@domain.com");
         assertEquals(0, result);
     }
 

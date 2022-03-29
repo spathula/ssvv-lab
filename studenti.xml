@@ -3,13 +3,21 @@
     <student ID="11">
         <Nume>asd</Nume>
         <Grupa>300</Grupa>
+        <Mail>salut@mail.com</Mail>
     </student>
     <student ID="1">
         <Nume>a</Nume>
         <Grupa>200</Grupa>
+        <Mail>salut@mail.com</Mail>
     </student>
     <student ID="2">
         <Nume>b</Nume>
         <Grupa>305</Grupa>
+        <Mail>salut@mail.com</Mail>
+    </student>
+    <student ID="3">
+        <Nume>ded</Nume>
+        <Grupa>201</Grupa>
+        <Mail>tset</Mail>
     </student>
 </Entitati>

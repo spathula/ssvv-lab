@@ -61,9 +61,12 @@ public class UI {
         String nume = scanner.nextLine();
 
         System.out.println("Introduceti grupa studentului: ");
-        int grupa = scanner.nextInt();
+        int grupa = Integer.parseInt(scanner.nextLine());
 
-        if (service.saveStudent(id, nume, grupa) != 0) {
+        System.out.println("Introduceti mail-ul studentului: ");
+        String mail = scanner.nextLine();
+
+        if (service.saveStudent(id, nume, grupa, mail) != 0) {
             System.out.println("Student adaugat cu succes! \n");
         }
         else {
@@ -165,9 +168,12 @@ public class UI {
         String numeNou = scanner.nextLine();
 
         System.out.println("Introduceti noua grupa a studentului: ");
-        int grupaNoua = scanner.nextInt();
+        int grupaNoua = Integer.parseInt(scanner.nextLine());
 
-        if (service.updateStudent(id, numeNou, grupaNoua) != 0) {
+        System.out.println("Introduceti noul mail al studentului: ");
+        String mailNou = scanner.nextLine();
+
+        if (service.updateStudent(id, numeNou, grupaNoua, mailNou) != 0) {
             System.out.println("Student actualizat cu succes! \n");
         }
         else {

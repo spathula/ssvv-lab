@@ -12,6 +12,9 @@ public class StudentValidator implements Validator<Student> {
         if (student.getGrupa() <= 110 || student.getGrupa() >= 938) {
             throw new ValidationException("Grupa invalida! \n");
         }
+        if (student.getMail() == null || student.getMail().equals("")) {
+            throw new ValidationException("Mail invalid! \n");
+        }
     }
 }
 
