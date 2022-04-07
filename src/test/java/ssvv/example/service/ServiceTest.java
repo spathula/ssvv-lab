@@ -87,15 +87,51 @@ public class ServiceTest {
     }
 
     @Test
-    public void test_addAssignment_IfResultNull() {
+    public void test_addAssignment_success() {
         int result = service.saveTema("1", "tema", 3, 2);
         assertEquals(1, result);
     }
 
     @Test
-    public void test_addAssignment_IfResultNotNull() {
+    public void test_addAssignment_fail_duplicate() {
         service.saveTema("1", "tema", 3, 2);
         int result = service.saveTema("1", "tema", 3, 2);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void test_addAssignment_fail_emptyId() {
+        int result = service.saveTema("", "tema", 3, 2);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void test_addAssignment_fail_nullId() {
+        int result = service.saveTema(null, "tema", 3, 2);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void test_addAssignment_fail_emptyDescription() {
+        int result = service.saveTema("1", "", 3, 2);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void test_addAssignment_fail_nullDescription() {
+        int result = service.saveTema("1", null, 3, 2);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void test_addAssignment_fail_invalidDeadline() {
+        int result = service.saveTema("1", "tema", -1, 2);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void test_addAssignment_fail_invalidStartline() {
+        int result = service.saveTema("1", "tema", 3, 15);
         assertEquals(0, result);
     }
 }
