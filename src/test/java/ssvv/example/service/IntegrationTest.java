@@ -40,7 +40,7 @@ public class IntegrationTest {
         service.deleteTema("1");
         service.deleteNota(new Pair("1", "1"));
         service.deleteStudent("2");
-        service.deleteStudent("2");
+        service.deleteTema("2");
         service.deleteNota(new Pair("2", "2"));
     }
 
