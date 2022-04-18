@@ -1,9 +1,6 @@
 package ssvv.example.service;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import ssvv.example.domain.Nota;
 import ssvv.example.domain.Pair;
 import ssvv.example.domain.Student;
@@ -21,8 +18,8 @@ import static org.junit.Assert.assertEquals;
 public class IntegrationTest {
     private static Service service;
 
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         Validator<Student> studentValidator = new StudentValidator();
         Validator<Tema> temaValidator = new TemaValidator();
         Validator<Nota> notaValidator = new NotaValidator();
@@ -32,16 +29,20 @@ public class IntegrationTest {
         NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note-test.xml");
 
         service = new Service(fileRepository1, fileRepository2, fileRepository3);
+        service.saveStudent("3", "student1", 123, "mail@domain.com");
+        service.saveTema("3", "tema", 3, 2);
     }
 
     @AfterClass
     public static void teardown() {
         service.deleteStudent("1");
         service.deleteTema("1");
-        service.deleteNota(new Pair("1", "1"));
         service.deleteStudent("2");
         service.deleteTema("2");
         service.deleteNota(new Pair("2", "2"));
+        service.deleteStudent("3");
+        service.deleteTema("3");
+        service.deleteNota(new Pair("3", "3"));
     }
 
     @Test
@@ -58,7 +59,7 @@ public class IntegrationTest {
 
     @Test
     public void test_addGrade() {
-        int result = service.saveNota("1", "1", 10, 3, "very good very nice");
+        int result = service.saveNota("3", "3", 10, 3, "very good very nice");
         assertEquals(1, result);
     }
 
