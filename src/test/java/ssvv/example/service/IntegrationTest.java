@@ -43,6 +43,12 @@ public class IntegrationTest {
         service.deleteStudent("3");
         service.deleteTema("3");
         service.deleteNota(new Pair("3", "3"));
+        service.deleteStudent("4");
+        service.deleteTema("4");
+        service.deleteNota(new Pair("4", "4"));
+        service.deleteStudent("100");
+        service.deleteStudent("101");
+        service.deleteTema("101");
     }
 
     @Test
@@ -68,6 +74,27 @@ public class IntegrationTest {
         service.saveStudent("2", "student2", 123, "mail@domain.com");
         service.saveTema("2", "tema2", 5, 3);
         int result = service.saveNota("2", "2", 8, 5, "very good very nice");
+        assertEquals(1, result);
+    }
+
+    @Test
+    public void test_addStudent_incremental() {
+        int result = service.saveStudent("100", "student100", 420, "mail@domain.com");
+        assertEquals(1, result);
+    }
+
+    @Test
+    public void test_addAssignment_incremental() {
+        service.saveStudent("101", "student101", 420, "mail@domain.com");
+        int result = service.saveTema("101", "tema", 3, 2);
+        assertEquals(1, result);
+    }
+
+    @Test
+    public void test_addGrade_incremental() {
+        service.saveStudent("4", "student4", 420, "mail@domain.com");
+        service.saveTema("4", "tema", 3, 2);
+        int result = service.saveNota("4", "4", 10, 3, "very good very nice");
         assertEquals(1, result);
     }
 }
